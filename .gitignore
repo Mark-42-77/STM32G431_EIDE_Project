@@ -1,0 +1,85 @@
+# ===============================================
+# STM32 项目 Git 忽略规则
+# 保留 Keil + EIDE 双 IDE 支持
+# ===============================================
+
+# ===== 通用编译产物 =====
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.bin
+*.elf
+*.s19
+*.lst
+*.map
+*.map.old
+*.map.view
+*.dep
+*.lnp
+*.objlist
+*.i
+*.iex
+*.plg
+*.tra
+*.scvd
+*.htm
+*.build_log.htm
+
+# ===== Keil MDK-ARM 相关 =====
+# 编译输出目录
+test_demo/MDK-ARM/test_demo/
+
+# 调试配置（个人环境相关）
+test_demo/MDK-ARM/DebugConfig/
+
+# RTE 临时文件
+test_demo/MDK-ARM/RTE/_*/
+
+# 用户 GUI 布局（窗口位置等）
+*.uvguix.*
+
+# 备份文件
+*.uvoptx.bak
+*.uvprojx.bak
+
+# Listings 和 Objects 目录（如果存在）
+**/Listings/
+**/Objects/
+
+# ===== EIDE 相关 =====
+# 编译输出
+test_demo_eide/build/
+
+# 设备支持包（很大，可重新下载）
+test_demo_eide/.pack/
+
+# CMSIS 包
+test_demo_eide/.cmsis/
+
+# EIDE 日志和用户上下文
+test_demo_eide/.eide/log/
+test_demo_eide/.eide.usr.ctx.json
+
+# VS Code 调试配置（个人环境相关）
+test_demo_eide/.vscode/launch.json
+
+# EIDE 模板
+*.ept
+*.eide-template
+
+# ===== STM32CubeMX 临时文件 =====
+*.mxproject
+
+# ===== 通用忽略 =====
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.log
+
+# ===== 可选：忽略 Drivers 目录 =====
+# 取消下行注释可减少约 80 个文件
+# 但克隆后需要用 CubeMX 重新生成代码
+# test_demo/Drivers/
