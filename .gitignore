@@ -31,6 +31,8 @@
 # 编译输出目录
 test_demo/MDK-ARM/test_demo/
 
+test_demo_eide/test_demo.uvoptx
+
 # 调试配置（个人环境相关）
 test_demo/MDK-ARM/DebugConfig/
 
