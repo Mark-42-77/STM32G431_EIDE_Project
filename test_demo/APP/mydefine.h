@@ -19,6 +19,7 @@
 #include "lcd_app.h"
 #include "uart_app.h"
 #include "adc_app.h"
+#include "i2c_hal.h"
 
 extern uint8_t ucled[8];
 extern uint8_t uckey[4];
@@ -31,6 +32,8 @@ extern uint8_t uart_rx_buffer[128];
 
 extern uint32_t dma_buff[2][30];
 extern float adc_value[2];
+
+extern uint8_t eeprom_test[4];
 
 #endif //  MYDEFINE_H
 

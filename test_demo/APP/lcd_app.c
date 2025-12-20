@@ -18,6 +18,7 @@ void lcd_proc(void)
     LcdSprintf(Line1,"%d %d %d %d",ucled[0],ucled[1],ucled[2],ucled[3]);
     LcdSprintf(Line2,"%d %d %d %d",uckey[0],uckey[1],uckey[2],uckey[3]);  
     LcdSprintf(Line3,"%.2f %.2f",adc_value[0],adc_value[1]);
+    LcdSprintf(Line4,"%d %d %d %d",eeprom_test[0],eeprom_test[1],eeprom_test[2],eeprom_test[3]);
 }
 
 
