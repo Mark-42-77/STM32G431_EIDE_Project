@@ -62,6 +62,7 @@ virtualFolder:
         - path: ../test_demo/APP/lcd.c
         - path: ../test_demo/APP/lcd_app.c
         - path: ../test_demo/APP/uart_app.c
+        - path: ../test_demo/APP/ringbuffer.c
       folders: []
 dependenceList: []
 outDir: build

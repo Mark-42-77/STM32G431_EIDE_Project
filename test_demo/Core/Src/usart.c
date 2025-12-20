@@ -73,8 +73,8 @@ void MX_USART1_UART_Init(void)
   }
   /* USER CODE BEGIN USART1_Init 2 */
   // HAL_UART_Receive_IT(&huart1, uart_rx_buffer, 1);
-  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, uart_rx_buffer,sizeof(uart_rx_buffer));
-  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx ,DMA_IT_HT);
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, uart_rx_dma_buffer, sizeof(uart_rx_dma_buffer));
+  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
   /* USER CODE END USART1_Init 2 */
 
 }

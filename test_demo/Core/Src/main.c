@@ -96,6 +96,7 @@ int main(void)
   LCD_SetBackColor(White);
   LCD_SetTextColor(Black);
   system_init();
+  ringbuffer_init(&usart_rb);
   scheduler_init();
   /* USER CODE END 2 */
 
