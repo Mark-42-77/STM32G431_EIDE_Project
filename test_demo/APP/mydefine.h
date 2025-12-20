@@ -19,7 +19,7 @@
 #include "lcd_app.h"
 #include "uart_app.h"
 #include "ringbuffer.h"
-
+#include "adc_app.h"
 
 extern uint8_t ucled[8];
 extern uint8_t uckey[4];
@@ -31,6 +31,9 @@ extern uint8_t uart_rx_dma_buffer[128];
 extern uint8_t usart_read_buffer[128];
 
 extern DMA_HandleTypeDef hdma_usart1_rx;
+
+extern uint32_t dma_buff[2][30];
+extern float adc_value[2];
 
 #endif //  MYDEFINE_H
 

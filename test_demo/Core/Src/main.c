@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "dma.h"
 #include "usart.h"
 #include "gpio.h"
@@ -90,6 +91,8 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USART1_UART_Init();
+  MX_ADC1_Init();
+  MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
   LCD_Init();
   LCD_Clear(Black);
@@ -97,6 +100,8 @@ int main(void)
   LCD_SetTextColor(Black);
   system_init();
   ringbuffer_init(&usart_rb);
+  HAL_ADC_Start_DMA(&hadc1,(uint32_t*)&dma_buff[0][0],30);
+  HAL_ADC_Start_DMA(&hadc2,(uint32_t*)&dma_buff[1][0],30);
   scheduler_init();
   /* USER CODE END 2 */
 

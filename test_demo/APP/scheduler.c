@@ -17,7 +17,8 @@ static task_t scheduler_task[] =
     {led_proc, 15, 0},  // 定义一个任务，任务函数为 Led_Proc，执行周期为 10 毫秒，初始上次运行时间为 0
     {key_proc, 10, 0},
     {lcd_proc, 100, 0},
-    {uart_proc,10,0}
+    {uart_proc,10,0},
+    {adc_proc,100,0},
 };
 
 /**
