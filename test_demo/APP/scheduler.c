@@ -19,6 +19,7 @@ static task_t scheduler_task[] =
     {lcd_proc, 100, 0},
     {uart_proc,10,0},
     {adc_proc,100,0},
+    {rtc_proc,1000,0},
 };
 
 /**
