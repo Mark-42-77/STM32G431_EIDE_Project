@@ -26,6 +26,7 @@
 uint16_t uart_rx_index = 0;
 uint16_t uart_rx_ticks = 0;
 uint8_t uart_rx_buffer[128] = {0};
+uint8_t uart_rx_dma_buffer[128] = {0};
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
@@ -71,7 +72,9 @@ void MX_USART1_UART_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN USART1_Init 2 */
-  HAL_UART_Receive_IT(&huart1, uart_rx_buffer, 1);
+  // HAL_UART_Receive_IT(&huart1, uart_rx_buffer, 1);
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, uart_rx_buffer,sizeof(uart_rx_buffer));
+  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx ,DMA_IT_HT);
   /* USER CODE END USART1_Init 2 */
 
 }
@@ -161,7 +164,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     /* USART1 interrupt Deinit */
     HAL_NVIC_DisableIRQ(USART1_IRQn);
   /* USER CODE BEGIN USART1_MspDeInit 1 */
-
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, uart_rx_dma_buffer,sizeof(uart_rx_dma_buffer));
+  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx ,DMA_IT_HT);
   /* USER CODE END USART1_MspDeInit 1 */
   }
 }

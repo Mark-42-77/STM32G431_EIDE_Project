@@ -27,7 +27,7 @@ extern uint8_t uckey[4];
 extern uint16_t uart_rx_index;
 extern uint16_t uart_rx_ticks;
 extern uint8_t uart_rx_buffer[128];
-
+extern uint8_t uart_rx_dma_buffer[128];
 
 
 #endif //  MYDEFINE_H
