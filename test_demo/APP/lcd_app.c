@@ -19,6 +19,8 @@ void lcd_proc(void)
     LcdSprintf(Line2,"%d %d %d %d",uckey[0],uckey[1],uckey[2],uckey[3]);  
     LcdSprintf(Line3,"%.2f %.2f",adc_value[0],adc_value[1]);
     LcdSprintf(Line4,"%d %d %d %d",eeprom_test[0],eeprom_test[1],eeprom_test[2],eeprom_test[3]);
+    LcdSprintf(Line5,"%d  %d  %d  ",time.Hours,time.Minutes,time.Seconds);
+    LcdSprintf(Line6,"%d  %d  %d  %d ",date.Year,date.Month,date.Date,date.WeekDay);
 }
 
 

@@ -5,6 +5,7 @@
 #include "gpio.h"
 #include "dma.h"
 #include "usart.h"
+#include "rtc.h"
 
 #include "lcd.h"
 #include "stdio.h"
@@ -20,6 +21,7 @@
 #include "uart_app.h"
 #include "adc_app.h"
 #include "i2c_hal.h"
+#include "rtc_app.h"
 
 extern uint8_t ucled[8];
 extern uint8_t uckey[4];
@@ -34,6 +36,9 @@ extern uint32_t dma_buff[2][30];
 extern float adc_value[2];
 
 extern uint8_t eeprom_test[4];
+
+extern RTC_TimeTypeDef time; //定义时间结构体
+extern RTC_DateTypeDef date; //定义日期结构体
 
 #endif //  MYDEFINE_H
 
