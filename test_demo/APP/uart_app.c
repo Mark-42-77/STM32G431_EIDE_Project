@@ -93,7 +93,7 @@ void uart_proc(void)
     {
         ringbuffer_read(&usart2_rb, usart2_read_buffer, usart2_rb.itemCount);
         my_printf(&huart2,"ringbuffer data2: %s\n", usart2_read_buffer);        
-        switch ((usart2_read_buffer[0] - '0')
+        switch (usart2_read_buffer[0] - '0')
         {
             case 1 :
                 ucled[4] ^= 1;
