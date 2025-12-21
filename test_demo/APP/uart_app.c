@@ -3,6 +3,9 @@
 ringbuffer_t usart_rb;
 uint8_t usart_read_buffer[128];
 
+ringbuffer_t usart2_rb;
+uint8_t usart2_read_buffer[128];
+
 // void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 // {
 //     if(huart->Instance == USART1)
@@ -16,6 +19,19 @@ uint8_t usart_read_buffer[128];
        
 //     }
 // }
+
+int my_printf(UART_HandleTypeDef *huart, const char *format, ...)
+{
+	char buffer[512];
+	va_list arg;
+	int len;
+	// 初始化可变参数列表
+	va_start(arg, format);
+	len = vsnprintf(buffer, sizeof(buffer), format, arg);
+	va_end(arg);
+	HAL_UART_Transmit(huart, (uint8_t *)buffer, (uint16_t)len, 0xFF);
+	return len;
+}
 
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
@@ -33,6 +49,20 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         HAL_UARTEx_ReceiveToIdle_DMA(&huart1, uart_rx_dma_buffer, sizeof(uart_rx_dma_buffer));
         __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT); // 禁用半传输中断
     }
+
+    if(huart->Instance == USART2)
+    {
+        if(!ringbuffer_is_full(&usart2_rb))
+        {
+            ringbuffer_write(&usart2_rb, uart2_rx_dma_buffer, Size);
+        }
+        memset(uart2_rx_dma_buffer, 0, sizeof(uart2_rx_dma_buffer));
+        ucled[1] ^= 1;
+        
+        // 【关键】重新启动DMA接收，否则只能收一次
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart2, uart2_rx_dma_buffer, sizeof(uart2_rx_dma_buffer));
+        __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT); // 禁用半传输中断
+    }
 }
 
 
@@ -49,14 +79,42 @@ void uart_proc(void)
     //     huart1.pRxBuffPtr = uart_rx_buffer;
     // }
 
-    if(ringbuffer_is_empty(&usart_rb)) return;
-    ringbuffer_read(&usart_rb, usart_read_buffer, usart_rb.itemCount);
-    /*********具体解析过程写在下方**********/
-    printf("ringbuffer data: %s\n", usart_read_buffer);
+    if((ringbuffer_is_empty(&usart2_rb))&&(ringbuffer_is_empty(&usart_rb))) return;
+    if(!(ringbuffer_is_empty(&usart_rb)))
+    {
+        ringbuffer_read(&usart_rb, usart_read_buffer, usart_rb.itemCount);
+        my_printf(&huart1,"ringbuffer data: %s\n", usart_read_buffer);
+        
+
+        memset(usart_read_buffer, 0 ,sizeof(uint8_t) * 128);
+    }
+    
+    if(!(ringbuffer_is_empty(&usart2_rb)))
+    {
+        ringbuffer_read(&usart2_rb, usart2_read_buffer, usart2_rb.itemCount);
+        my_printf(&huart2,"ringbuffer data2: %s\n", usart2_read_buffer);        
+        switch ((usart2_read_buffer[0] - '0')
+        {
+            case 1 :
+                ucled[4] ^= 1;
+                break;
+            case 2:
+                ucled[5] ^= 1;
+                break;
+            case 3:
+                ucled[6] ^= 1;
+                break;
+            case 4:
+                ucled[7] ^= 1;
+                break;
+            
+            default:
+                break;
+        }
 
 
-
-    memset(usart_read_buffer, 0 ,sizeof(uint8_t) * 128);
+        memset(usart2_read_buffer, 0 ,sizeof(uint8_t) * 128);
+    }    
 }
 
 

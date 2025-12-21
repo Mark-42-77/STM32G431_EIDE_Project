@@ -19,5 +19,6 @@ int8_t ringbuffer_write(ringbuffer_t *rb, uint8_t *data, uint32_t num);
 int8_t ringbuffer_read(ringbuffer_t *rb, uint8_t *data, uint32_t num);
 
 extern ringbuffer_t usart_rb;
+extern ringbuffer_t usart2_rb;
 
 #endif

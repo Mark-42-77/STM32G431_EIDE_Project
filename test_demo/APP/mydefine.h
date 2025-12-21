@@ -11,7 +11,7 @@
 #include "stdio.h"
 #include "stdarg.h"
 #include "string.h"
-
+#include <stdlib.h>
 
 #include "system.h"
 #include "scheduler.h"
@@ -33,7 +33,14 @@ extern uint8_t uart_rx_buffer[128];
 extern uint8_t uart_rx_dma_buffer[128];
 extern uint8_t usart_read_buffer[128];
 
+extern uint16_t uart2_rx_index;
+extern uint16_t uart2_rx_ticks;
+extern uint8_t uart2_rx_buffer[128];
+extern uint8_t uart2_rx_dma_buffer[128];
+extern uint8_t usart2_read_buffer[128];
+
 extern DMA_HandleTypeDef hdma_usart1_rx;
+extern DMA_HandleTypeDef hdma_usart2_rx;
 
 extern uint32_t dma_buff[2][30];
 extern float adc_value[2];
