@@ -23,6 +23,8 @@
 #include "adc_app.h"
 #include "i2c_hal.h"
 #include "rtc_app.h"
+#include "tim_app.h"
+
 
 extern uint8_t ucled[8];
 extern uint8_t uckey[4];
@@ -49,6 +51,12 @@ extern uint8_t eeprom_test[4];
 
 extern RTC_TimeTypeDef time; //定义时间结构体
 extern RTC_DateTypeDef date; //定义日期结构体
+
+extern TIM_HandleTypeDef htim2;
+
+
+extern uint16_t count_pwm;
+extern float frequency;
 
 #endif //  MYDEFINE_H
 

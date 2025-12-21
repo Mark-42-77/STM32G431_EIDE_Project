@@ -21,6 +21,7 @@ void lcd_proc(void)
     LcdSprintf(Line4,"%d %d %d %d",eeprom_test[0],eeprom_test[1],eeprom_test[2],eeprom_test[3]);
     LcdSprintf(Line5,"%d  %d  %d  ",time.Hours,time.Minutes,time.Seconds);
     LcdSprintf(Line6,"%d  %d  %d  %d ",date.Year,date.Month,date.Date,date.WeekDay);
+    LcdSprintf(Line7,"%.2f",frequency);
 }
 
 

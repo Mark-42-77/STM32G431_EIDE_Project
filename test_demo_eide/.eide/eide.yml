@@ -29,6 +29,7 @@ virtualFolder:
                 - path: ../test_demo/Core/Src/adc.c
                 - path: ../test_demo/Core/Src/system_stm32g4xx.c
                 - path: ../test_demo/Core/Src/rtc.c
+                - path: ../test_demo/Core/Src/tim.c
               folders: []
     - name: Drivers
       files: []
@@ -54,6 +55,8 @@ virtualFolder:
             - path: ../test_demo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.c
             - path: ../test_demo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rtc.c
             - path: ../test_demo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rtc_ex.c
+            - path: ../test_demo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.c
+            - path: ../test_demo/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.c
           folders: []
         - name: CMSIS
           files:
@@ -73,6 +76,7 @@ virtualFolder:
         - path: ../test_demo/APP/adc_app.c
         - path: ../test_demo/APP/i2c_hal.c
         - path: ../test_demo/APP/rtc_app.c
+        - path: ../test_demo/APP/tim_app.c
       folders: []
 dependenceList: []
 outDir: build
